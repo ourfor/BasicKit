@@ -4,6 +4,10 @@ platform :ios, '9.0'
 
 target 'BasicKit_Example' do
   pod 'BasicKit', :path => '../'
+  
+  pod 'Reveal-SDK', :configurations => ['Debug']
+  pod 'LookinServer', :configurations => ['Debug']
+  pod 'FLEX', :configurations => ['Debug']
 
   target 'BasicKit_Tests' do
     inherit! :search_paths

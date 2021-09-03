@@ -21,22 +21,34 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/曾谞旺/BasicKit'
+  s.homepage         = 'https://github.com/ourfor/BasicKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { '曾谞旺' => 'zengxuwang@bytedance.com' }
-  s.source           = { :git => 'https://github.com/曾谞旺/BasicKit.git', :tag => s.version.to_s }
+  s.author           = { 'ourfor' => 'ourfor@qq.com' }
+  s.source           = { :git => 'https://github.com/ourfor/BasicKit.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'BasicKit/Classes/**/*'
+  s.source_files = 'BasicKit/Classes/*'
   
-  # s.resource_bundles = {
-  #   'BasicKit' => ['BasicKit/Assets/*.png']
-  # }
+  s.vendored_frameworks = 'BasicKit.framework'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.subspec 'Util' do |ss|
+    ss.source_files = 'BasicKit/Classes/Util/**/*'
+  end
+
+  s.subspec 'View' do |ss|
+    ss.source_files = 'BasicKit/Classes/View/**/*'
+  end
+
+  s.subspec 'Resource' do |ss|
+    ss.resource_bundles = {
+      'Asset' => ['BasicKit/Assets/**/*'],
+    }
+  end
+
+  s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

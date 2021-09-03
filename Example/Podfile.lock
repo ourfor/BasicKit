@@ -1,0 +1,37 @@
+PODS:
+  - BasicKit (0.1.0):
+    - BasicKit/Resource (= 0.1.0)
+    - BasicKit/Util (= 0.1.0)
+    - BasicKit/View (= 0.1.0)
+  - BasicKit/Resource (0.1.0)
+  - BasicKit/Util (0.1.0)
+  - BasicKit/View (0.1.0)
+  - FLEX (4.5.0)
+  - LookinServer (1.0.4)
+  - Reveal-SDK (31)
+
+DEPENDENCIES:
+  - BasicKit (from `../`)
+  - FLEX
+  - LookinServer
+  - Reveal-SDK
+
+SPEC REPOS:
+  trunk:
+    - FLEX
+    - LookinServer
+    - Reveal-SDK
+
+EXTERNAL SOURCES:
+  BasicKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BasicKit: b258e43b9f2f8891f8bccf12aedb816b7bbec1ed
+  FLEX: e51461dd6f0bfb00643c262acdfea5d5d12c596b
+  LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
+  Reveal-SDK: 62ae124d57732c4fe7e88635274ca24054dd2d29
+
+PODFILE CHECKSUM: bc9eae46b0933a7c244ca7f2fa2032090dd238c0
+
+COCOAPODS: 1.10.1

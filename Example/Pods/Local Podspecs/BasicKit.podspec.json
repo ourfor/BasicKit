@@ -1,0 +1,42 @@
+{
+  "name": "BasicKit",
+  "version": "0.1.0",
+  "summary": "A short description of BasicKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ourfor/BasicKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ourfor": "ourfor@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/ourfor/BasicKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "BasicKit/Classes/*",
+  "vendored_frameworks": "BasicKit.framework",
+  "public_header_files": "Pod/Classes/**/*.h",
+  "subspecs": [
+    {
+      "name": "Util",
+      "source_files": "BasicKit/Classes/Util/**/*"
+    },
+    {
+      "name": "View",
+      "source_files": "BasicKit/Classes/View/**/*"
+    },
+    {
+      "name": "Resource",
+      "resource_bundles": {
+        "Asset": [
+          "BasicKit/Assets/**/*"
+        ]
+      }
+    }
+  ]
+}
