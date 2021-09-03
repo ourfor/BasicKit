@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '9.0'
+
+target 'BasicKit_Example' do
+  pod 'BasicKit', :path => '../'
+
+  target 'BasicKit_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
