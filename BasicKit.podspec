@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'BasicKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of BasicKit.'
+  s.summary          = 'BasicKit make you code simple and easy'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,10 +18,10 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  BasicKit include common function. It is easy to use.
                        DESC
 
-  s.homepage         = 'https://code.byted.org/zengxuwang/BasicKit'
+  s.homepage         = 'https://gitlab.com/ourfor'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ourfor' => 'ourfor@qq.com' }
@@ -29,10 +29,7 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-
-  s.source_files = 'BasicKit/Classes/*'
-  
-  s.vendored_frameworks = 'BasicKit.framework'
+  s.source_files = 'BasicKit/Classes/**/*.{h,m,c,cpp}'
 
   s.subspec 'Util' do |ss|
     ss.source_files = 'BasicKit/Classes/Util/**/*'
@@ -48,7 +45,7 @@ TODO: Add long description of the pod here.
     }
   end
 
-  s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'BasicKit/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
