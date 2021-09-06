@@ -48,8 +48,6 @@
             CFTimeInterval duration = animation.duration + offset;
             [container.layer addAnimation:animation forKey:nil];
 
-
-
             UIImage *image = [UIImage imageNamed:iconType inBundle:assetBundle(self) compatibleWithTraitCollection:nil];
             UIImageView *icon = [[UIImageView alloc] initWithImage:image];
             NSNumber *iconWidth = @24;
@@ -62,39 +60,11 @@
                 icon.translatesAutoresizingMaskIntoConstraints = NO;
                 CGFloat iconSize = iconWidth.floatValue;
                 NSArray *constraints = @[
-                    [NSLayoutConstraint constraintWithItem:icon
-                                                 attribute:NSLayoutAttributeWidth
-                                                 relatedBy:NSLayoutRelationEqual toItem:nil
-                                                 attribute:NSLayoutAttributeWidth
-                                                multiplier:0
-                                                  constant:iconSize],
-                    [NSLayoutConstraint constraintWithItem:icon
-                                                 attribute:NSLayoutAttributeHeight
-                                                 relatedBy:NSLayoutRelationEqual toItem:nil
-                                                 attribute:NSLayoutAttributeHeight
-                                                multiplier:0
-                                                  constant:iconSize],
-                    [NSLayoutConstraint constraintWithItem:icon
-                                                 attribute:NSLayoutAttributeTop
-                                                 relatedBy:NSLayoutRelationEqual
-                                                    toItem:container
-                                                 attribute:NSLayoutAttributeTop
-                                                multiplier:1
-                                                  constant:4],
-                    [NSLayoutConstraint constraintWithItem:icon
-                                                 attribute:NSLayoutAttributeBottom
-                                                 relatedBy:NSLayoutRelationEqual
-                                                    toItem:container
-                                                 attribute:NSLayoutAttributeBottom
-                                                multiplier:1
-                                                  constant:-4],
-                    [NSLayoutConstraint constraintWithItem:icon
-                                                 attribute:NSLayoutAttributeLeading
-                                                 relatedBy:NSLayoutRelationEqual
-                                                    toItem:container
-                                                 attribute:NSLayoutAttributeLeading
-                                                multiplier:1
-                                                  constant:4]
+                    [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:0 constant:iconSize],
+                    [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:0 constant:iconSize],
+                    [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeTop multiplier:1 constant:4],
+                    [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeBottom multiplier:1 constant:-4],
+                    [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeLeading multiplier:1 constant:4]
                 ];
                 [container addConstraints:constraints];
             }

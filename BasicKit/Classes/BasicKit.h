@@ -2,12 +2,11 @@
 //  BasicKit.h
 //  BasicKit
 //
-//  Created by XuWang Real on 2021/9/3.
+//  Created by XuWang Real on 2021/9/4.
 //
 
 #ifndef BasicKit_h
 #define BasicKit_h
 
-#import "Alert.h"
 
 #endif /* BasicKit_h */

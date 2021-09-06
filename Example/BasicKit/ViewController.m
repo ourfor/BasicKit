@@ -13,6 +13,7 @@
 #import <BasicKit/Timer.h>
 #import <BasicKit/ColorUtil.h>
 #import <BasicKit/PopAnimation.h>
+#import <BasicKit/BasicKit.h>
 
 @interface ViewController ()
 @property (nonatomic, strong) Timer timer;
@@ -38,7 +39,7 @@
     }, 5 * TIME_UNIT_SEC);
     setInterval(^{
 //        log.warn(@"%@ 你好👋", @"BB");
-        Toast.success(@"%@ 你好👋", @"AA");
+//        Toast.success(@"%@ 你好👋", @"AA");
     }, 2 * TIME_UNIT_SEC);
 }
 
