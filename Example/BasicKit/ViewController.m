@@ -33,7 +33,7 @@
     Logger *log = [Logger sharedInstance];
     log.info(@"Good %@", @"BB");
     log.warn(@"%@ 你好👋", @"AA");
-    Toast.success(@"%@ 你好👋", @"AA");
+    Toast.success(@"%@ 你好👋, 分手多日，近况如何？ 奉读大示，心折殊深。 惠书敬悉，迟复为歉。 近来寒暑不常，希自珍慰。 久不通函，至以为念。 前上一函，谅达雅鉴，迄今未闻复音。", @"AA");
     setTimeout(^{
         log.info(@"Hello World");
     }, 5 * TIME_UNIT_SEC);

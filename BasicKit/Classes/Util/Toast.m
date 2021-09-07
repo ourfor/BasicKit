@@ -63,7 +63,6 @@
                     [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:0 constant:iconSize],
                     [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:0 constant:iconSize],
                     [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeTop multiplier:1 constant:4],
-                    [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeBottom multiplier:1 constant:-4],
                     [NSLayoutConstraint constraintWithItem:icon attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeLeading multiplier:1 constant:4]
                 ];
                 [container addConstraints:constraints];
@@ -72,6 +71,7 @@
             UILabel *msg = [[UILabel alloc] init];
             msg.textColor = ColorRGBHex(hexColor);
             msg.text = content;
+            msg.numberOfLines = 0;
             msg.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
             msg.textAlignment = NSTextAlignmentLeft;
             msg.lineBreakMode = NSLineBreakByWordWrapping;
@@ -83,7 +83,8 @@
                 NSArray *constraints = @[
                     [NSLayoutConstraint constraintWithItem:msg attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:icon attribute:NSLayoutAttributeTrailing multiplier:1 constant:4],
                     [NSLayoutConstraint constraintWithItem:msg attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeTrailing multiplier:1 constant:-6],
-                    [NSLayoutConstraint constraintWithItem:msg attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:icon attribute:NSLayoutAttributeCenterY multiplier:1 constant:0],
+                    [NSLayoutConstraint constraintWithItem:msg attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:icon attribute:NSLayoutAttributeTop multiplier:1 constant:0],
+                    [NSLayoutConstraint constraintWithItem:msg attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:container attribute:NSLayoutAttributeBottom multiplier:1 constant:-4],
                 ];
                 [container addConstraints:constraints];
             }
@@ -98,18 +99,23 @@
             }
 
             if (keywindow) {
-                keywindow.translatesAutoresizingMaskIntoConstraints = NO;
+//                keywindow.translatesAutoresizingMaskIntoConstraints = NO;
                 container.translatesAutoresizingMaskIntoConstraints = NO;
                 [keywindow addSubview:container];
 
                 {
+                    CGFloat maxWidth = UIScreen.mainScreen.bounds.size.width * 0.85;
                     NSArray *constraints = @[
                         [NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:keywindow attribute:NSLayoutAttributeCenterX multiplier:1 constant:0],
-                        [NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:keywindow attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]
+                        [NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:keywindow attribute:NSLayoutAttributeCenterY multiplier:1 constant:0],
+                        [NSLayoutConstraint constraintWithItem:container attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:0 constant:maxWidth],
                     ];
+                    [NSLayoutConstraint activateConstraints:constraints];
                     [keywindow addConstraints:constraints];
                 }
                 
+                
+
                 [keywindow bringSubviewToFront:container];
                 setTimeout(^{
                     [container removeFromSuperview];
