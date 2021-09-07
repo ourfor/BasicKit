@@ -1,9 +1,9 @@
 {
   "name": "BasicKit",
   "version": "0.1.0",
-  "summary": "A short description of BasicKit.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/ourfor/BasicKit",
+  "summary": "BasicKit make you code simple and easy",
+  "description": "BasicKit include common function. It is easy to use.",
+  "homepage": "https://gitlab.com/ourfor",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,15 +12,20 @@
     "ourfor": "ourfor@qq.com"
   },
   "source": {
-    "git": "https://github.com/ourfor/BasicKit.git",
+    "git": "gogs@git.ourfor.top:ourfor/BasicKit.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "BasicKit/Classes/*",
-  "vendored_frameworks": "BasicKit.framework",
-  "public_header_files": "Pod/Classes/**/*.h",
+  "source_files": "BasicKit/Classes/**/*.{h,m,c,cpp}",
+  "public_header_files": "BasicKit/Classes/**/*.h",
+  "pod_target_xcconfig": {
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "arm64"
+  },
+  "user_target_xcconfig": {
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "arm64"
+  },
   "subspecs": [
     {
       "name": "Util",

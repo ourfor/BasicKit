@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BasicKit: b258e43b9f2f8891f8bccf12aedb816b7bbec1ed
+  BasicKit: e9ac2b0e6efbd1b46cdc3b9a7c3db0863a5b18b1
   FLEX: e51461dd6f0bfb00643c262acdfea5d5d12c596b
   LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
   Reveal-SDK: 62ae124d57732c4fe7e88635274ca24054dd2d29
