@@ -23,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		885ED17E26F36CDA00F24A86 /* PanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 885ED17D26F36CDA00F24A86 /* PanelView.m */; };
 		E45E58679A5D830F49004815 /* Pods_BasicKit_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C46401DFFB6A056A7FF18AE6 /* Pods_BasicKit_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +41,7 @@
 		3F5CEB749BE9E27C3A9CD716 /* BasicKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BasicKit.podspec; path = ../BasicKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4EEB665A67F2667A120BFF48 /* Pods-BasicKit_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicKit_Tests.release.xcconfig"; path = "Target Support Files/Pods-BasicKit_Tests/Pods-BasicKit_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5099AB8A27532F802225BDDB /* Pods_BasicKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6003F58A195388D20070C39A /* BasicKit_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicKit_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F58A195388D20070C39A /* BasicKitApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicKitApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6003F591195388D20070C39A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -53,7 +54,7 @@
 		6003F5A5195388D20070C39A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6003F5AE195388D20070C39A /* BasicKit_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicKit_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6003F5AE195388D20070C39A /* BasicKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -61,6 +62,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		885ED17C26F36CDA00F24A86 /* PanelView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PanelView.h; sourceTree = "<group>"; };
+		885ED17D26F36CDA00F24A86 /* PanelView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PanelView.m; sourceTree = "<group>"; };
 		953A8CB060D428A38531E728 /* Pods-BasicKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicKit_Example.release.xcconfig"; path = "Target Support Files/Pods-BasicKit_Example/Pods-BasicKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		954F6BF17CE5B2632BD4C398 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C1AD6CAC635783148296658B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -110,7 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
-				6003F593195388D20070C39A /* Example for BasicKit */,
+				6003F593195388D20070C39A /* BasicKitApp */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
@@ -121,8 +124,8 @@
 		6003F58B195388D20070C39A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6003F58A195388D20070C39A /* BasicKit_Example.app */,
-				6003F5AE195388D20070C39A /* BasicKit_Tests.xctest */,
+				6003F58A195388D20070C39A /* BasicKitApp.app */,
+				6003F5AE195388D20070C39A /* BasicKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,19 +143,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6003F593195388D20070C39A /* Example for BasicKit */ = {
+		6003F593195388D20070C39A /* BasicKitApp */ = {
 			isa = PBXGroup;
 			children = (
 				6003F59C195388D20070C39A /* AppDelegate.h */,
 				6003F59D195388D20070C39A /* AppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				885ED17C26F36CDA00F24A86 /* PanelView.h */,
+				885ED17D26F36CDA00F24A86 /* PanelView.m */,
 				6003F5A5195388D20070C39A /* ViewController.h */,
 				6003F5A6195388D20070C39A /* ViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
-			name = "Example for BasicKit";
+			name = BasicKitApp;
 			path = BasicKit;
 			sourceTree = "<group>";
 		};
@@ -199,9 +204,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6003F589195388D20070C39A /* BasicKit_Example */ = {
+		6003F589195388D20070C39A /* BasicKitApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKit_Example" */;
+			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKitApp" */;
 			buildPhases = (
 				D2960B7FA05A1DC48F4F1FA6 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
@@ -213,14 +218,14 @@
 			);
 			dependencies = (
 			);
-			name = BasicKit_Example;
+			name = BasicKitApp;
 			productName = BasicKit;
-			productReference = 6003F58A195388D20070C39A /* BasicKit_Example.app */;
+			productReference = 6003F58A195388D20070C39A /* BasicKitApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6003F5AD195388D20070C39A /* BasicKit_Tests */ = {
+		6003F5AD195388D20070C39A /* BasicKitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKit_Tests" */;
+			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKitTests" */;
 			buildPhases = (
 				5F927C56A4A97FDF99E73B81 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
@@ -232,9 +237,9 @@
 			dependencies = (
 				6003F5B4195388D20070C39A /* PBXTargetDependency */,
 			);
-			name = BasicKit_Tests;
+			name = BasicKitTests;
 			productName = BasicKitTests;
-			productReference = 6003F5AE195388D20070C39A /* BasicKit_Tests.xctest */;
+			productReference = 6003F5AE195388D20070C39A /* BasicKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -269,8 +274,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6003F589195388D20070C39A /* BasicKit_Example */,
-				6003F5AD195388D20070C39A /* BasicKit_Tests */,
+				6003F589195388D20070C39A /* BasicKitApp */,
+				6003F5AD195388D20070C39A /* BasicKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -374,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
+				885ED17E26F36CDA00F24A86 /* PanelView.m in Sources */,
 				6003F5A7195388D20070C39A /* ViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -392,7 +398,7 @@
 /* Begin PBXTargetDependency section */
 		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* BasicKit_Example */;
+			target = 6003F589195388D20070C39A /* BasicKitApp */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -504,11 +510,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NSJM2J9JJK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BasicKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FLEX\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/LookinServer\"",
+					"\"${PODS_ROOT}/Reveal-SDK/RevealServer\"",
+					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/RevealServer\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BasicKit/BasicKit-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BasicKit/BasicKit.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FLEX/FLEX.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/LookinServer/LookinServer.framework/Headers\"",
+				);
 				INFOPLIST_FILE = "BasicKit/BasicKit-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = top.ourfor.x.metal.graph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
@@ -521,11 +542,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NSJM2J9JJK;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BasicKit\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BasicKit/BasicKit-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BasicKit/BasicKit.framework/Headers\"",
+				);
 				INFOPLIST_FILE = "BasicKit/BasicKit-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_BUNDLE_IDENTIFIER = top.ourfor.x.metal.graph;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
@@ -590,7 +620,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKit_Example" */ = {
+		6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKitApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C0195388D20070C39A /* Debug */,
@@ -599,7 +629,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKit_Tests" */ = {
+		6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "BasicKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,

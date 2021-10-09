@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "BasicKit_Example.app"
-               BlueprintName = "BasicKit_Example"
+               BuildableName = "BasicKitApp.app"
+               BlueprintName = "BasicKitApp"
                ReferencedContainer = "container:BasicKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,29 +27,27 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6003F589195388D20070C39A"
+            BuildableName = "BasicKitApp.app"
+            BlueprintName = "BasicKitApp"
+            ReferencedContainer = "container:BasicKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "BasicKit_Tests.xctest"
-               BlueprintName = "BasicKit_Tests"
+               BuildableName = "BasicKitTests.xctest"
+               BlueprintName = "BasicKitTests"
                ReferencedContainer = "container:BasicKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "BasicKit_Example.app"
-            BlueprintName = "BasicKit_Example"
-            ReferencedContainer = "container:BasicKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -66,13 +64,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "BasicKit_Example.app"
-            BlueprintName = "BasicKit_Example"
+            BuildableName = "BasicKitApp.app"
+            BlueprintName = "BasicKitApp"
             ReferencedContainer = "container:BasicKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -85,8 +81,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "BasicKit_Example.app"
-            BlueprintName = "BasicKit_Example"
+            BuildableName = "BasicKitApp.app"
+            BlueprintName = "BasicKitApp"
             ReferencedContainer = "container:BasicKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

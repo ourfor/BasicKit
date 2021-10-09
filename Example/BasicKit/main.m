@@ -9,6 +9,14 @@
 @import UIKit;
 #import "AppDelegate.h"
 
+__attribute__((constructor)) static void beforeFn() {
+    
+}
+
+__attribute__((destructor)) static void afterFn() {
+    
+}
+
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
