@@ -2,14 +2,16 @@ use_frameworks!
 
 platform :ios, '9.0'
 
-target 'BasicKit_Example' do
+target 'BasicKitApp' do
   pod 'BasicKit', :path => '../'
   
   pod 'Reveal-SDK', :configurations => ['Debug']
   pod 'LookinServer', :configurations => ['Debug']
   pod 'FLEX', :configurations => ['Debug']
+  pod 'Masonry'
+  pod 'ReactiveObjC'
 
-  target 'BasicKit_Tests' do
+  target 'BasicKitTests' do
     inherit! :search_paths
 
     

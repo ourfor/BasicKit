@@ -10,12 +10,15 @@
 @import BasicKit.Timer;
 @import BasicKit.AuthUtil;
 @import BasicKit.Assets;
+@import BasicKit.PopPanelView;
+@import Masonry;
 
 #import "ViewController.h"
 #import <LocalAuthentication/LocalAuthentication.h>
 #import <AvailabilityInternal.h>
-#import "PanelView.h"
 #import <objc/runtime.h>
+#import <ReactiveObjC/ReactiveObjC.h>
+#import "OHTextStickerView.h"
 
 @interface ViewController ()
 @property (nonatomic, strong) Timer timer;
@@ -123,7 +126,33 @@
         ];
         [superview addConstraints:constraints];
     }
-
+    
+    
+    OHTextStickerModel *model = [[OHTextStickerModel alloc] init];
+    model.image = @"gift";
+    model.text = @"This is your gift! Have a good time.";
+    model.padding = UIEdgeInsetsMake(60, 110, 6, 40);
+    OHTextStickerView *stickerView = [[OHTextStickerView alloc] initWithModel:model];
+    [superview addSubview:stickerView];
+    [stickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(superview);
+        make.top.equalTo(superview).with.offset(40);
+    }];
+    
+    UITextField *textInputView = [[UITextField alloc] init];
+    textInputView.font = [UIFont systemFontOfSize:20];
+    textInputView.borderStyle = UITextBorderStyleRoundedRect;
+    textInputView.enabled = YES;
+    textInputView.text = model.text;
+    [superview addSubview:textInputView];
+    [textInputView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(stickerView);
+        make.top.equalTo(stickerView.mas_bottom).with.offset(50);
+        make.height.equalTo(@50);
+        make.width.equalTo(@240);
+    }];
+    
+    RACChannelTo(stickerView.model, text) = textInputView.rac_newTextChannel;
 }
 
 - (void)touchUsingFaceIDButton {
@@ -133,10 +162,10 @@
 }
 
 - (void)showPopPanel {
-    UIView *panel = [[PanelContentView alloc] init];
+    UIView *panel = [[PopPanelContentView alloc] initWithCorner:UIRectCornerTopLeft|UIRectCornerTopRight ofSize:CGSizeMake(9, 9)];
     panel.backgroundColor = UIColor.grayColor;
     [panel addConstraint:[NSLayoutConstraint constraintWithItem:panel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:panel attribute:NSLayoutAttributeHeight multiplier:0 constant:400]];
-    PanelView *panelView = [[PanelView alloc] initWithContentView:panel];
+    PopPanelView *panelView = [[PopPanelView alloc] initWithContentView:panel];
     [panelView showInView:self.view];
 }
 

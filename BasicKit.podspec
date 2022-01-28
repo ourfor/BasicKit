@@ -29,14 +29,14 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
-  s.source_files = 'BasicKit/Classes/**/*.{h,m,c,cpp}'
-
-  s.subspec 'Util' do |ss|
-    ss.source_files = 'BasicKit/Classes/Util/**/*'
-  end
-
-  s.subspec 'View' do |ss|
-    ss.source_files = 'BasicKit/Classes/View/**/*'
+  s.subspec 'Core' do |mod|
+    @paths = Dir.glob('BasicKit/Classes/*/')
+    @paths.each do |path|
+      name = path.sub('BasicKit/Classes/', '').delete('/')
+      mod.subspec name do |ss|
+        ss.source_files = "BasicKit/Classes/#{name}/**/*"
+      end
+    end
   end
 
   s.subspec 'Resource' do |ss|

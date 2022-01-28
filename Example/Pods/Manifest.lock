@@ -1,25 +1,33 @@
 PODS:
   - BasicKit (0.1.0):
+    - BasicKit/Core (= 0.1.0)
     - BasicKit/Resource (= 0.1.0)
-    - BasicKit/Util (= 0.1.0)
-    - BasicKit/View (= 0.1.0)
+  - BasicKit/Core (0.1.0):
+    - BasicKit/Core/Util (= 0.1.0)
+    - BasicKit/Core/View (= 0.1.0)
+  - BasicKit/Core/Util (0.1.0)
+  - BasicKit/Core/View (0.1.0)
   - BasicKit/Resource (0.1.0)
-  - BasicKit/Util (0.1.0)
-  - BasicKit/View (0.1.0)
   - FLEX (4.5.0)
   - LookinServer (1.0.4)
+  - Masonry (1.1.0)
+  - ReactiveObjC (3.1.1)
   - Reveal-SDK (31)
 
 DEPENDENCIES:
   - BasicKit (from `../`)
   - FLEX
   - LookinServer
+  - Masonry
+  - ReactiveObjC
   - Reveal-SDK
 
 SPEC REPOS:
   trunk:
     - FLEX
     - LookinServer
+    - Masonry
+    - ReactiveObjC
     - Reveal-SDK
 
 EXTERNAL SOURCES:
@@ -27,11 +35,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BasicKit: e9ac2b0e6efbd1b46cdc3b9a7c3db0863a5b18b1
+  BasicKit: 739fa2c3de56c4ebc2a1a71907705ea8072581b5
   FLEX: e51461dd6f0bfb00643c262acdfea5d5d12c596b
   LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   Reveal-SDK: 62ae124d57732c4fe7e88635274ca24054dd2d29
 
-PODFILE CHECKSUM: bc9eae46b0933a7c244ca7f2fa2032090dd238c0
+PODFILE CHECKSUM: dffbcb8d5f47745d71542a52a35c714b821738b4
 
 COCOAPODS: 1.10.1
