@@ -5,13 +5,6 @@
 //  Created by 曾谞旺 on 09/03/2021.
 //  Copyright (c) 2021 曾谞旺. All rights reserved.
 //
-@import BasicKit.Toast;
-@import BasicKit.Logger;
-@import BasicKit.Timer;
-@import BasicKit.AuthUtil;
-@import BasicKit.Assets;
-@import BasicKit.PopPanelView;
-@import Masonry;
 
 #import "ViewController.h"
 #import <LocalAuthentication/LocalAuthentication.h>
@@ -19,9 +12,17 @@
 #import <objc/runtime.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "OHTextStickerView.h"
+#import <BasicKit/BasicKit.h>
 
 @interface ViewController ()
-@property (nonatomic, strong) Timer timer;
+@property (nonatomic, weak) Timer timer;
+@property (nonatomic, strong) UITextField *textInputView;
+@property (nonatomic, strong) UIView *redCircleView;
+@property (nonatomic, strong) UIView *greenCircleView;
+@property (nonatomic, strong) UIButton *popPanelButton;
+@property (nonatomic, strong) UIButton *faceIdButton;
+@property (nonatomic, strong) UIView *stickerView;
+@property (nonatomic, strong) OHTextStickerModel *model;
 @end
 
 @implementation ViewController
@@ -29,7 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupUI];
+    [self _setupUI];
+    [self _layout];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -54,105 +56,74 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setupUI {
+- (void)_setupUI {
     UIView *superview = self.view;
-    UIView *rectView = [[UIView alloc] init];
-    rectView.backgroundColor = UIColor.redColor;
-    rectView.layer.cornerRadius = 50;
-    [superview addSubview:rectView];
-    rectView.translatesAutoresizingMaskIntoConstraints = NO;
-    {
-        NSArray *constraints = @[
-            [NSLayoutConstraint constraintWithItem:rectView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:100],
-            [NSLayoutConstraint constraintWithItem:rectView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:100],
-            [NSLayoutConstraint constraintWithItem:rectView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:-60],
-            [NSLayoutConstraint constraintWithItem:rectView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterX multiplier:1 constant:20],
-        ];
-        [superview addConstraints:constraints];
-    }
-    
-    UIView *rectView2 = [[UIView alloc] init];
-    [superview addSubview:rectView2];
-    rectView2.backgroundColor = UIColor.greenColor;
-    rectView2.layer.cornerRadius = 50;
-    rectView2.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    {
-        NSArray *constraints = @[
-            [NSLayoutConstraint constraintWithItem:rectView2 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:100],
-            [NSLayoutConstraint constraintWithItem:rectView2 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:100],
-            [NSLayoutConstraint constraintWithItem:rectView2 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:-60],
-            [NSLayoutConstraint constraintWithItem:rectView2 attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterX multiplier:1 constant:-20],
-        ];
-        [superview addConstraints:constraints];
-    }
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.translatesAutoresizingMaskIntoConstraints = NO;
-    [button setTitle:@"使用FaceID" forState:UIControlStateNormal];
-    [button setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-    button.backgroundColor = UIColor.blackColor;
-    button.layer.cornerRadius = 10;
-    button.showsTouchWhenHighlighted = YES;
-    button.adjustsImageWhenHighlighted = YES;
-    button.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
-    button.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-    [superview addSubview:button];
-    [button addTarget:self action:@selector(touchUsingFaceIDButton) forControlEvents:UIControlEventTouchUpInside];
-    {
-        NSArray<NSLayoutConstraint *> *constraints = @[
-            [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterY multiplier:1 constant:60],
-            [NSLayoutConstraint constraintWithItem:button attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterX multiplier:1 constant:0],
-        ];
-        [superview addConstraints:constraints];
-    }
+    [superview addSubview:self.stickerView];
+    [superview addSubview:self.textInputView];
+    [superview addSubview:self.faceIdButton];
+    [superview addSubview:self.popPanelButton];
+    [superview addSubview:self.redCircleView];
+    [superview addSubview:self.greenCircleView];
 
-    UIButton *buttonPop = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonPop.translatesAutoresizingMaskIntoConstraints = NO;
-    [buttonPop setTitle:@"打开弹窗" forState:UIControlStateNormal];
-    [button setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-    buttonPop.backgroundColor = UIColor.blueColor;
-    buttonPop.layer.cornerRadius = 10;
-    buttonPop.showsTouchWhenHighlighted = YES;
-    buttonPop.adjustsImageWhenHighlighted = YES;
-    buttonPop.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
-    buttonPop.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-    [superview addSubview:buttonPop];
-    [buttonPop addTarget:self action:@selector(showPopPanel) forControlEvents:UIControlEventTouchUpInside];
-    {
-        NSArray<NSLayoutConstraint *> *constraints = @[
-            [NSLayoutConstraint constraintWithItem:buttonPop attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:button attribute:NSLayoutAttributeBottom multiplier:1 constant:60],
-            [NSLayoutConstraint constraintWithItem:buttonPop attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:superview attribute:NSLayoutAttributeCenterX multiplier:1 constant:0],
-        ];
-        [superview addConstraints:constraints];
-    }
+    RACChannelTo(self.model, text) = self.textInputView.rac_newTextChannel;
+    UIGestureRecognizer *clickRecognizer = [[UITapGestureRecognizer alloc] init];
+    [clickRecognizer addTarget:self action:@selector(hideKeyboard)];
+    self.view.userInteractionEnabled = YES;
+    [self.view addGestureRecognizer:clickRecognizer];
+}
+
+- (void)_layout {
+    UIView *superview = self.view;
+    @weakify(self);
+    @weakify(superview);
+    [self.redCircleView remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(superview);
+        make.width.equalTo(@100);
+        make.height.equalTo(@100);
+        make.centerY.equalTo(superview).offset(-60);
+        make.centerX.equalTo(superview).offset(20);
+    }];
     
+    [self.greenCircleView remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(superview);
+        make.width.equalTo(@100);
+        make.height.equalTo(@100);
+        make.centerY.equalTo(superview).offset(-60);
+        make.centerX.equalTo(superview).offset(-20);
+    }];
     
-    OHTextStickerModel *model = [[OHTextStickerModel alloc] init];
-    model.image = @"gift";
-    model.text = @"This is your gift! Have a good time.";
-    model.padding = UIEdgeInsetsMake(60, 110, 6, 40);
-    OHTextStickerView *stickerView = [[OHTextStickerView alloc] initWithModel:model];
-    [superview addSubview:stickerView];
-    [stickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.stickerView makeConstraints:^(MASConstraintMaker *make) {
+        @strongify(superview);
         make.centerX.equalTo(superview);
         make.top.equalTo(superview).with.offset(40);
     }];
     
-    UITextField *textInputView = [[UITextField alloc] init];
-    textInputView.font = [UIFont systemFontOfSize:20];
-    textInputView.borderStyle = UITextBorderStyleRoundedRect;
-    textInputView.enabled = YES;
-    textInputView.text = model.text;
-    [superview addSubview:textInputView];
-    [textInputView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(stickerView);
-        make.top.equalTo(stickerView.mas_bottom).with.offset(50);
+    [self.popPanelButton remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self);
+        @strongify(superview);
+        make.top.equalTo(self.faceIdButton).offset(60);
+        make.centerX.equalTo(superview);
+    }];
+    
+    [self.faceIdButton remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(superview);
+        make.centerY.equalTo(superview).offset(60);
+        make.centerX.equalTo(superview);
+    }];
+    
+    [self.textInputView remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self);
+        make.centerX.equalTo(self.stickerView);
+        make.top.equalTo(self.stickerView.bottom).with.offset(50);
         make.height.equalTo(@50);
         make.width.equalTo(@240);
     }];
-    
-    RACChannelTo(stickerView.model, text) = textInputView.rac_newTextChannel;
+}
+
+- (void)hideKeyboard {
+    if ([self.textInputView canResignFirstResponder]) {
+        [self.textInputView resignFirstResponder];
+    }
 }
 
 - (void)touchUsingFaceIDButton {
@@ -192,5 +163,95 @@
     NSString *password = [[NSString alloc] initWithData:passwordData encoding:NSUTF8StringEncoding];
     Toast.success(@"account: %@, password: %@", account, password);
     return data;
+}
+
+
+#pragma mark Getter
+
+- (UIView *)stickerView {
+    if (!_stickerView) {
+        OHTextStickerView *stickerView = [[OHTextStickerView alloc] initWithModel:self.model];
+        _stickerView = stickerView;
+    }
+    return _stickerView;
+}
+
+- (UITextField *)textInputView {
+    if (!_textInputView) {
+        UITextField *textInputView = [[UITextField alloc] init];
+        textInputView.font = [UIFont systemFontOfSize:20];
+        textInputView.borderStyle = UITextBorderStyleRoundedRect;
+        textInputView.enabled = YES;
+        textInputView.text = self.model.text;
+        _textInputView = textInputView;
+    }
+    return _textInputView;
+}
+
+- (OHTextStickerModel *)model {
+    if (!_model) {
+        OHTextStickerModel *model = [[OHTextStickerModel alloc] init];
+        model.image = @"gift";
+        model.text = @"This is your gift! Have a good time.";
+        model.padding = UIEdgeInsetsMake(60, 110, 6, 40);
+        _model = model;
+    }
+    return _model;
+}
+
+- (UIButton *)popPanelButton {
+    if (!_popPanelButton) {
+        UIButton *popButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        popButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [popButton setTitle:@"打开弹窗" forState:UIControlStateNormal];
+        popButton.backgroundColor = UIColor.blueColor;
+        popButton.layer.cornerRadius = 10;
+        popButton.showsTouchWhenHighlighted = YES;
+        popButton.adjustsImageWhenHighlighted = YES;
+        popButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
+        popButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        [popButton addTarget:self action:@selector(showPopPanel) forControlEvents:UIControlEventTouchUpInside];
+        _popPanelButton = popButton;
+    }
+    return _popPanelButton;
+}
+
+- (UIButton *)faceIdButton {
+    if (!_faceIdButton) {
+        UIButton *faceIdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        faceIdButton.translatesAutoresizingMaskIntoConstraints = NO;
+        [faceIdButton setTitle:@"使用FaceID" forState:UIControlStateNormal];
+        [faceIdButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        faceIdButton.backgroundColor = UIColor.blackColor;
+        faceIdButton.layer.cornerRadius = 10;
+        faceIdButton.showsTouchWhenHighlighted = YES;
+        faceIdButton.adjustsImageWhenHighlighted = YES;
+        faceIdButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
+        faceIdButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        [faceIdButton addTarget:self action:@selector(touchUsingFaceIDButton) forControlEvents:UIControlEventTouchUpInside];
+        [faceIdButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+        _faceIdButton = faceIdButton;
+    }
+    return _faceIdButton;
+}
+
+- (UIView *)redCircleView {
+    if (!_redCircleView) {
+        UIView *rectView = [[UIView alloc] init];
+        rectView.backgroundColor = UIColor.redColor;
+        rectView.layer.cornerRadius = 50;
+        _redCircleView = rectView;
+    }
+    return _redCircleView;
+}
+
+- (UIView *)greenCircleView {
+    if (!_greenCircleView) {
+        UIView *rectView2 = [[UIView alloc] init];
+        rectView2.backgroundColor = UIColor.greenColor;
+        rectView2.layer.cornerRadius = 50;
+        _greenCircleView = rectView2;
+    }
+    return _greenCircleView;
 }
 @end

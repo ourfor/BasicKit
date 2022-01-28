@@ -29,6 +29,7 @@ Pod::Spec.new do |s|
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.0'
+  s.source_files = "BasicKit/Classes/*.h"
   s.subspec 'Core' do |mod|
     @paths = Dir.glob('BasicKit/Classes/*/')
     @paths.each do |path|
@@ -45,7 +46,7 @@ Pod::Spec.new do |s|
     }
   end
 
-  s.public_header_files = 'BasicKit/Classes/**/*.h'
+  s.public_header_files = 'BasicKit/Classes/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }

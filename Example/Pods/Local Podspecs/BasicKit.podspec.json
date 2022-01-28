@@ -18,7 +18,8 @@
   "platforms": {
     "ios": "9.0"
   },
-  "public_header_files": "BasicKit/Classes/**/*.h",
+  "source_files": "BasicKit/Classes/*.h",
+  "public_header_files": "BasicKit/Classes/*.h",
   "pod_target_xcconfig": {
     "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "arm64"
   },

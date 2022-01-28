@@ -68,6 +68,7 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88564E15275F078800BB2F98 /* OHTextStickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHTextStickerView.h; sourceTree = "<group>"; };
 		88564E16275F078800BB2F98 /* OHTextStickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHTextStickerView.m; sourceTree = "<group>"; };
+		88F44F8227A3C5AC0034EDB9 /* prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
 		953A8CB060D428A38531E728 /* Pods-BasicKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicKit_Example.release.xcconfig"; path = "Target Support Files/Pods-BasicKit_Example/Pods-BasicKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		954F6BF17CE5B2632BD4C398 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C1AD6CAC635783148296658B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 		6003F593195388D20070C39A /* BasicKitApp */ = {
 			isa = PBXGroup;
 			children = (
+				88F44F8227A3C5AC0034EDB9 /* prefix.pch */,
 				6003F59C195388D20070C39A /* AppDelegate.h */,
 				6003F59D195388D20070C39A /* AppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -531,7 +533,7 @@
 					"\"${PODS_XCFRAMEWORKS_BUILD_DIR}/RevealServer\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BasicKit/BasicKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BasicKit/prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BasicKit/BasicKit.framework/Headers\"",
@@ -559,7 +561,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BasicKit\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BasicKit/BasicKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/BasicKit/prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BasicKit/BasicKit.framework/Headers\"",

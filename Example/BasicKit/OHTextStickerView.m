@@ -59,7 +59,7 @@
     }];
     
     @weakify(self);
-    [self.textView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.textView remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
         make.top.equalTo(self).with.offset(padding.top * scale);
         make.left.equalTo(self).with.offset(padding.left * scale);
@@ -67,7 +67,7 @@
         make.bottom.equalTo(self).with.offset(-padding.bottom * scale);
     }];
     
-    [self.imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.imageView remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(self);
         make.width.equalTo(self);
         make.height.equalTo(self);
