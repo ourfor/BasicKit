@@ -8,12 +8,15 @@
 
 #import "OHDetailViewController.h"
 #import "OHPresentAnimation.h"
+#import "OHDismissAnimation.h"
+#import "OHSwipeDownInteractiveTransition.h"
 #import <SDWebImage/SDWebImage.h>
 #import "OHRandomImageViewModel.h"
 
 @interface OHDetailViewController ()
 @property (nonatomic, strong) UIImageView *coverImage;
 @property (nonatomic, strong) OHRandomImageViewModel *viewModel;
+@property (nonatomic, strong) OHSwipeDownInteractiveTransition *transition;
 @end
 
 @implementation OHDetailViewController
@@ -50,6 +53,10 @@
     UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] init];
     [tapGesture addTarget:self action:@selector(_dismiss)];
     [self.view addGestureRecognizer:tapGesture];
+    
+    OHSwipeDownInteractiveTransition *transition = [[OHSwipeDownInteractiveTransition alloc] init];
+    [transition wireToViewController:self];
+    _transition = transition;
 }
 
 - (void)_dismiss {
@@ -69,6 +76,15 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     return [[OHPresentAnimation alloc] init];
 }
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [[OHDismissAnimation alloc] init];
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return self.transition.interacting ? self.transition : nil;
+}
+
 
 - (UIImageView *)coverImage {
     BeginLazyPropInit(coverImage)

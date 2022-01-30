@@ -16,7 +16,7 @@
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* AppDelegate.m */; };
 		6003F5A7195388D20070C39A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* ViewController.m */; };
-		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
+		6003F5A9195388D20070C39A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Assets.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -28,6 +28,8 @@
 		88F44FB427A543E50034EDB9 /* OHPresentAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FB327A543E50034EDB9 /* OHPresentAnimation.m */; };
 		88F44FB727A547E50034EDB9 /* OHRandomImageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FB627A547E50034EDB9 /* OHRandomImageViewModel.m */; };
 		88F44FBA27A5508F0034EDB9 /* OHRandomAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FB927A5508F0034EDB9 /* OHRandomAlbumView.m */; };
+		88F44FBD27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FBC27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m */; };
+		88F44FC027A64FCF0034EDB9 /* OHDismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FBF27A64FCF0034EDB9 /* OHDismissAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,12 +56,11 @@
 		6003F595195388D20070C39A /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		6003F597195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F599195388D20070C39A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6003F59B195388D20070C39A /* BasicKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BasicKit-Prefix.pch"; sourceTree = "<group>"; };
 		6003F59C195388D20070C39A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6003F59D195388D20070C39A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6003F5A5195388D20070C39A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		6003F5A6195388D20070C39A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6003F5A8195388D20070C39A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* BasicKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
@@ -81,6 +82,10 @@
 		88F44FB627A547E50034EDB9 /* OHRandomImageViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHRandomImageViewModel.m; sourceTree = "<group>"; };
 		88F44FB827A5508F0034EDB9 /* OHRandomAlbumView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHRandomAlbumView.h; sourceTree = "<group>"; };
 		88F44FB927A5508F0034EDB9 /* OHRandomAlbumView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHRandomAlbumView.m; sourceTree = "<group>"; };
+		88F44FBB27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHSwipeDownInteractiveTransition.h; sourceTree = "<group>"; };
+		88F44FBC27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHSwipeDownInteractiveTransition.m; sourceTree = "<group>"; };
+		88F44FBE27A64FCF0034EDB9 /* OHDismissAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHDismissAnimation.h; sourceTree = "<group>"; };
+		88F44FBF27A64FCF0034EDB9 /* OHDismissAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHDismissAnimation.m; sourceTree = "<group>"; };
 		953A8CB060D428A38531E728 /* Pods-BasicKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicKit_Example.release.xcconfig"; path = "Target Support Files/Pods-BasicKit_Example/Pods-BasicKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		954F6BF17CE5B2632BD4C398 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C1AD6CAC635783148296658B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -167,9 +172,10 @@
 		6003F593195388D20070C39A /* BasicKitApp */ = {
 			isa = PBXGroup;
 			children = (
-				88F44F8927A528A60034EDB9 /* view */,
-				88F44F8227A3C5AC0034EDB9 /* prefix.pch */,
-				6003F5A8195388D20070C39A /* Images.xcassets */,
+				88F44FC327A657940034EDB9 /* view */,
+				88F44FC227A657590034EDB9 /* action */,
+				88F44FC127A657430034EDB9 /* animation */,
+				6003F5A8195388D20070C39A /* Assets.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
 			name = BasicKitApp;
@@ -179,12 +185,12 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				88F44F8227A3C5AC0034EDB9 /* prefix.pch */,
 				6003F59C195388D20070C39A /* AppDelegate.h */,
 				6003F59D195388D20070C39A /* AppDelegate.m */,
 				6003F595195388D20070C39A /* info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				6003F599195388D20070C39A /* main.m */,
-				6003F59B195388D20070C39A /* BasicKit-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -218,26 +224,44 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		88F44F8927A528A60034EDB9 /* view */ = {
+		88F44FC127A657430034EDB9 /* animation */ = {
+			isa = PBXGroup;
+			children = (
+				88F44FB227A543E50034EDB9 /* OHPresentAnimation.h */,
+				88F44FB327A543E50034EDB9 /* OHPresentAnimation.m */,
+				88F44FBE27A64FCF0034EDB9 /* OHDismissAnimation.h */,
+				88F44FBF27A64FCF0034EDB9 /* OHDismissAnimation.m */,
+				88F44FBB27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.h */,
+				88F44FBC27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m */,
+			);
+			path = animation;
+			sourceTree = "<group>";
+		};
+		88F44FC227A657590034EDB9 /* action */ = {
+			isa = PBXGroup;
+			children = (
+				88F44F8627A4E8E60034EDB9 /* PlayerAction.h */,
+			);
+			path = action;
+			sourceTree = "<group>";
+		};
+		88F44FC327A657940034EDB9 /* view */ = {
 			isa = PBXGroup;
 			children = (
 				6003F5A5195388D20070C39A /* ViewController.h */,
 				6003F5A6195388D20070C39A /* ViewController.m */,
-				88F44F8627A4E8E60034EDB9 /* PlayerAction.h */,
 				88564E15275F078800BB2F98 /* OHTextStickerView.h */,
 				88564E16275F078800BB2F98 /* OHTextStickerView.m */,
 				88F44F8327A403100034EDB9 /* OHPlayerView.h */,
 				88F44F8427A403100034EDB9 /* OHPlayerView.m */,
 				88F44FAF27A537DA0034EDB9 /* OHDetailViewController.h */,
 				88F44FB027A537DA0034EDB9 /* OHDetailViewController.m */,
-				88F44FB227A543E50034EDB9 /* OHPresentAnimation.h */,
-				88F44FB327A543E50034EDB9 /* OHPresentAnimation.m */,
 				88F44FB527A547E50034EDB9 /* OHRandomImageViewModel.h */,
 				88F44FB627A547E50034EDB9 /* OHRandomImageViewModel.m */,
 				88F44FB827A5508F0034EDB9 /* OHRandomAlbumView.h */,
 				88F44FB927A5508F0034EDB9 /* OHRandomAlbumView.m */,
 			);
-			name = view;
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,7 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				6003F5A9195388D20070C39A /* Assets.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +447,8 @@
 			files = (
 				88F44FBA27A5508F0034EDB9 /* OHRandomAlbumView.m in Sources */,
 				88F44FB427A543E50034EDB9 /* OHPresentAnimation.m in Sources */,
+				88F44FC027A64FCF0034EDB9 /* OHDismissAnimation.m in Sources */,
+				88F44FBD27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m in Sources */,
 				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
 				88F44FB727A547E50034EDB9 /* OHRandomImageViewModel.m in Sources */,
 				88F44F8527A403100034EDB9 /* OHPlayerView.m in Sources */,
