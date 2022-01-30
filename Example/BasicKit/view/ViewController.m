@@ -16,6 +16,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import "OHPlayerView.h"
 #import "OHDetailViewController.h"
+#import "OHNetworkProxy.h"
+
+#define BUTTON_CORNER_RADIUS 10
+#define BUTTON_FONT [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:15]
+#define BUTTON_PADDING UIEdgeInsetsMake(8, 13, 8, 13)
 
 @interface ViewController ()
 @property (nonatomic, weak) Timer timer;
@@ -26,6 +31,7 @@
 @property (nonatomic, strong) UIButton *faceIdButton;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIButton *openDetailButton;
+@property (nonatomic, strong) UISwitch *proxySwitch;
 @property (nonatomic, strong) UIView *stickerView;
 @property (nonatomic, strong) OHTextStickerModel *model;
 @property (nonatomic, strong) UIView<PlayerAction> *playerView;
@@ -74,6 +80,7 @@
     [superview addSubview:self.greenCircleView];
     [superview addSubview:self.playButton];
     [superview addSubview:self.openDetailButton];
+    [superview addSubview:self.proxySwitch];
 
     RACChannelTo(self.model, text) = self.textInputView.rac_newTextChannel;
     UIGestureRecognizer *clickRecognizer = [[UITapGestureRecognizer alloc] init];
@@ -141,6 +148,12 @@
         make.centerX.equalTo(superview);
         make.top.equalTo(self.playButton.bottom).offset(20);
     }];
+    
+    [self.proxySwitch remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(superview);
+        make.centerX.equalTo(superview);
+        make.top.equalTo(self.openDetailButton.bottom).offset(20);
+    }];
 }
 
 - (void)_bind {
@@ -148,6 +161,7 @@
     [self.faceIdButton addTarget:self action:@selector(touchUsingFaceIDButton) forControlEvents:UIControlEventTouchUpInside];
     [self.popPanelButton addTarget:self action:@selector(showPopPanel) forControlEvents:UIControlEventTouchUpInside];
     [self.openDetailButton addTarget:self action:@selector(_openDetail) forControlEvents:UIControlEventTouchUpInside];
+    [self.proxySwitch addTarget:self action:@selector(_switchProxy:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)hideKeyboard {
@@ -160,6 +174,19 @@
     [AuthUtil usingFaceID:^(LAContext * _Nonnull context) {
         [self writeDataToKeychainWithContext:context data:nil];
     }];
+}
+
+- (void)_switchProxy:(UISwitch *)sender {
+    BOOL enable = sender.isOn;
+    static OHNetworkProxy *proxy = nil;
+    if (!proxy) {
+        proxy = [[OHNetworkProxy alloc] init];
+    }
+    if (enable) {
+        [proxy start:nil];
+    } else {
+        [proxy stop];
+    }
 }
 
 - (void)showPopPanel {
@@ -246,11 +273,11 @@
         popButton.translatesAutoresizingMaskIntoConstraints = NO;
         [popButton setTitle:@"打开弹窗" forState:UIControlStateNormal];
         popButton.backgroundColor = UIColor.blueColor;
-        popButton.layer.cornerRadius = 10;
         popButton.showsTouchWhenHighlighted = YES;
         popButton.adjustsImageWhenHighlighted = YES;
-        popButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
-        popButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        popButton.layer.cornerRadius = BUTTON_CORNER_RADIUS;
+        popButton.titleLabel.font = BUTTON_FONT;
+        popButton.contentEdgeInsets = BUTTON_PADDING;
         _popPanelButton = popButton;
     }
     return _popPanelButton;
@@ -263,11 +290,11 @@
         [faceIdButton setTitle:@"使用FaceID" forState:UIControlStateNormal];
         [faceIdButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         faceIdButton.backgroundColor = UIColor.blackColor;
-        faceIdButton.layer.cornerRadius = 10;
         faceIdButton.showsTouchWhenHighlighted = YES;
         faceIdButton.adjustsImageWhenHighlighted = YES;
-        faceIdButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
-        faceIdButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        faceIdButton.titleLabel.font = BUTTON_FONT;
+        faceIdButton.layer.cornerRadius = BUTTON_CORNER_RADIUS;
+        faceIdButton.contentEdgeInsets = BUTTON_PADDING;
         [faceIdButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         _faceIdButton = faceIdButton;
     }
@@ -297,13 +324,12 @@
 - (UIView<PlayerAction> *)playerView {
     BeginLazyPropInit(playerView)
     playerView = [[OHPlayerView alloc] initWithPlayer:self.player];
-    playerView.frame = self.view.frame;
     EndLazyPropInit(playerView)
 }
 
 - (AVPlayer *)player {
     BeginLazyPropInit(player)
-    NSURL *url = [NSURL URLWithString:@"https://test.ourfor.top/mock/api/subscription.mp4"];
+    NSURL *url = [NSURL URLWithString:@"https://vod-progressive.akamaized.net/exp=1643548445~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2670%2F7%2F188350983%2F623685558.mp4~hmac=0f4be03a70e2caa0408a1f894dbcee61c41c9bb9b94b651de3318f6775387532/vimeo-prod-skyfire-std-us/01/2670/7/188350983/623685558.mp4?filename=Emoji+Saver+-+Patterns+in+the+Rain.mp4"];
     player = [[AVPlayer alloc] initWithURL:url];
     EndLazyPropInit(player)
 }
@@ -312,9 +338,9 @@
     BeginLazyPropInit(playButton)
     playButton = [[UIButton alloc] init];
     [playButton setTitle:@"播放" forState:UIControlStateNormal];
-    playButton.layer.cornerRadius = 10;
-    playButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
-    playButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    playButton.layer.cornerRadius = BUTTON_CORNER_RADIUS;
+    playButton.titleLabel.font = BUTTON_FONT;
+    playButton.contentEdgeInsets = BUTTON_PADDING;
     [playButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
     playButton.backgroundColor = UIColor.blackColor;
     EndLazyPropInit(playButton)
@@ -323,11 +349,17 @@
 - (UIButton *)openDetailButton {
     BeginLazyPropInit(openDetailButton)
     openDetailButton = [[UIButton alloc] init];
-    openDetailButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
-    openDetailButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     [openDetailButton setTitle:@"转场" forState:UIControlStateNormal];
-    openDetailButton.layer.cornerRadius = 10;
+    openDetailButton.layer.cornerRadius = BUTTON_CORNER_RADIUS;
+    openDetailButton.titleLabel.font = BUTTON_FONT;
+    openDetailButton.contentEdgeInsets = BUTTON_PADDING;
     openDetailButton.backgroundColor = UIColor.grayColor;
     EndLazyPropInit(openDetailButton)
+}
+
+- (UISwitch *)proxySwitch {
+    BeginLazyPropInit(proxySwitch)
+    proxySwitch = [[UISwitch alloc] init];
+    EndLazyPropInit(proxySwitch)
 }
 @end

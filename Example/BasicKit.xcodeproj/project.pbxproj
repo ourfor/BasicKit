@@ -30,6 +30,9 @@
 		88F44FBA27A5508F0034EDB9 /* OHRandomAlbumView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FB927A5508F0034EDB9 /* OHRandomAlbumView.m */; };
 		88F44FBD27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FBC27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m */; };
 		88F44FC027A64FCF0034EDB9 /* OHDismissAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FBF27A64FCF0034EDB9 /* OHDismissAnimation.m */; };
+		88F44FC827A65EA90034EDB9 /* OHNetworkProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44FC727A65EA90034EDB9 /* OHNetworkProxy.m */; };
+		88F44FCB27A666980034EDB9 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F44FCA27A666980034EDB9 /* ExternalAccessory.framework */; };
+		88F44FCE27A6676E0034EDB9 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F44FCD27A6676D0034EDB9 /* NetworkExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,11 @@
 		88F44FBC27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHSwipeDownInteractiveTransition.m; sourceTree = "<group>"; };
 		88F44FBE27A64FCF0034EDB9 /* OHDismissAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHDismissAnimation.h; sourceTree = "<group>"; };
 		88F44FBF27A64FCF0034EDB9 /* OHDismissAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHDismissAnimation.m; sourceTree = "<group>"; };
+		88F44FC627A65EA90034EDB9 /* OHNetworkProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHNetworkProxy.h; sourceTree = "<group>"; };
+		88F44FC727A65EA90034EDB9 /* OHNetworkProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHNetworkProxy.m; sourceTree = "<group>"; };
+		88F44FC927A666980034EDB9 /* BasicKitApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BasicKitApp.entitlements; sourceTree = SOURCE_ROOT; };
+		88F44FCA27A666980034EDB9 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		88F44FCD27A6676D0034EDB9 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		953A8CB060D428A38531E728 /* Pods-BasicKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicKit_Example.release.xcconfig"; path = "Target Support Files/Pods-BasicKit_Example/Pods-BasicKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		954F6BF17CE5B2632BD4C398 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C1AD6CAC635783148296658B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -100,6 +108,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
+				88F44FCE27A6676E0034EDB9 /* NetworkExtension.framework in Frameworks */,
+				88F44FCB27A666980034EDB9 /* ExternalAccessory.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
 				148FD353D38EEB45E56B27F8 /* Pods_BasicKitApp.framework in Frameworks */,
@@ -159,6 +169,8 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88F44FCD27A6676D0034EDB9 /* NetworkExtension.framework */,
+				88F44FCA27A666980034EDB9 /* ExternalAccessory.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -172,6 +184,8 @@
 		6003F593195388D20070C39A /* BasicKitApp */ = {
 			isa = PBXGroup;
 			children = (
+				88F44FC927A666980034EDB9 /* BasicKitApp.entitlements */,
+				88F44FC527A65E920034EDB9 /* util */,
 				88F44FC327A657940034EDB9 /* view */,
 				88F44FC227A657590034EDB9 /* action */,
 				88F44FC127A657430034EDB9 /* animation */,
@@ -264,6 +278,15 @@
 			path = view;
 			sourceTree = "<group>";
 		};
+		88F44FC527A65E920034EDB9 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				88F44FC627A65EA90034EDB9 /* OHNetworkProxy.h */,
+				88F44FC727A65EA90034EDB9 /* OHNetworkProxy.m */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -315,9 +338,6 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "曾谞旺";
 				TargetAttributes = {
-					6003F589195388D20070C39A = {
-						DevelopmentTeam = NSJM2J9JJK;
-					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -447,6 +467,7 @@
 			files = (
 				88F44FBA27A5508F0034EDB9 /* OHRandomAlbumView.m in Sources */,
 				88F44FB427A543E50034EDB9 /* OHPresentAnimation.m in Sources */,
+				88F44FC827A65EA90034EDB9 /* OHNetworkProxy.m in Sources */,
 				88F44FC027A64FCF0034EDB9 /* OHDismissAnimation.m in Sources */,
 				88F44FBD27A63B3B0034EDB9 /* OHSwipeDownInteractiveTransition.m in Sources */,
 				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
@@ -576,6 +597,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = BasicKitApp.entitlements;
 				DEVELOPMENT_TEAM = NSJM2J9JJK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -609,6 +631,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = BasicKitApp.entitlements;
 				DEVELOPMENT_TEAM = NSJM2J9JJK;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
