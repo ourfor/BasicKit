@@ -13,6 +13,9 @@ PODS:
   - Masonry (1.1.0)
   - ReactiveObjC (3.1.1)
   - Reveal-SDK (31)
+  - SDWebImage (5.12.1):
+    - SDWebImage/Core (= 5.12.1)
+  - SDWebImage/Core (5.12.1)
 
 DEPENDENCIES:
   - BasicKit (from `../`)
@@ -21,6 +24,7 @@ DEPENDENCIES:
   - Masonry
   - ReactiveObjC
   - Reveal-SDK
+  - SDWebImage
 
 SPEC REPOS:
   trunk:
@@ -29,6 +33,7 @@ SPEC REPOS:
     - Masonry
     - ReactiveObjC
     - Reveal-SDK
+    - SDWebImage
 
 EXTERNAL SOURCES:
   BasicKit:
@@ -41,7 +46,8 @@ SPEC CHECKSUMS:
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   Reveal-SDK: 62ae124d57732c4fe7e88635274ca24054dd2d29
+  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
 
-PODFILE CHECKSUM: dffbcb8d5f47745d71542a52a35c714b821738b4
+PODFILE CHECKSUM: eb61eedfe50f9b341292b4545248a83072571e60
 
 COCOAPODS: 1.10.1

@@ -10,6 +10,7 @@ target 'BasicKitApp' do
   pod 'FLEX', :configurations => ['Debug']
   pod 'Masonry'
   pod 'ReactiveObjC'
+  pod 'SDWebImage'
 
   target 'BasicKitTests' do
     inherit! :search_paths

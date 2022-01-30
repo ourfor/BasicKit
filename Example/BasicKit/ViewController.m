@@ -13,6 +13,9 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "OHTextStickerView.h"
 #import <BasicKit/BasicKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "OHPlayerView.h"
+#import "OHDetailViewController.h"
 
 @interface ViewController ()
 @property (nonatomic, weak) Timer timer;
@@ -21,8 +24,12 @@
 @property (nonatomic, strong) UIView *greenCircleView;
 @property (nonatomic, strong) UIButton *popPanelButton;
 @property (nonatomic, strong) UIButton *faceIdButton;
+@property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, strong) UIButton *openDetailButton;
 @property (nonatomic, strong) UIView *stickerView;
 @property (nonatomic, strong) OHTextStickerModel *model;
+@property (nonatomic, strong) UIView<PlayerAction> *playerView;
+@property (nonatomic, strong) AVPlayer *player;
 @end
 
 @implementation ViewController
@@ -32,6 +39,7 @@
     [super viewDidLoad];
     [self _setupUI];
     [self _layout];
+    [self _bind];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -64,6 +72,8 @@
     [superview addSubview:self.popPanelButton];
     [superview addSubview:self.redCircleView];
     [superview addSubview:self.greenCircleView];
+    [superview addSubview:self.playButton];
+    [superview addSubview:self.openDetailButton];
 
     RACChannelTo(self.model, text) = self.textInputView.rac_newTextChannel;
     UIGestureRecognizer *clickRecognizer = [[UITapGestureRecognizer alloc] init];
@@ -105,6 +115,13 @@
         make.centerX.equalTo(superview);
     }];
     
+    [self.playButton remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(self);
+        @strongify(superview);
+        make.top.equalTo(self.popPanelButton.bottom).offset(20);
+        make.centerX.equalTo(superview);
+    }];
+    
     [self.faceIdButton remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(superview);
         make.centerY.equalTo(superview).offset(60);
@@ -118,6 +135,19 @@
         make.height.equalTo(@50);
         make.width.equalTo(@240);
     }];
+    
+    [self.openDetailButton remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(superview);
+        make.centerX.equalTo(superview);
+        make.top.equalTo(self.playButton.bottom).offset(20);
+    }];
+}
+
+- (void)_bind {
+    [self.playButton addTarget:self action:@selector(_playVideo) forControlEvents:UIControlEventTouchUpInside];
+    [self.faceIdButton addTarget:self action:@selector(touchUsingFaceIDButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.popPanelButton addTarget:self action:@selector(showPopPanel) forControlEvents:UIControlEventTouchUpInside];
+    [self.openDetailButton addTarget:self action:@selector(_openDetail) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)hideKeyboard {
@@ -165,6 +195,17 @@
     return data;
 }
 
+- (void)_playVideo {
+    UIView *superview = self.view;
+    [self.playerView showInView:superview];
+}
+
+- (void)_openDetail {
+    UIViewController<UIViewControllerTransitioningDelegate> *detailViewController = [[OHDetailViewController alloc] init];
+    detailViewController.transitioningDelegate = detailViewController;
+    detailViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController presentViewController:detailViewController animated:YES completion:nil];
+}
 
 #pragma mark Getter
 
@@ -210,7 +251,6 @@
         popButton.adjustsImageWhenHighlighted = YES;
         popButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
         popButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-        [popButton addTarget:self action:@selector(showPopPanel) forControlEvents:UIControlEventTouchUpInside];
         _popPanelButton = popButton;
     }
     return _popPanelButton;
@@ -228,7 +268,6 @@
         faceIdButton.adjustsImageWhenHighlighted = YES;
         faceIdButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
         faceIdButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-        [faceIdButton addTarget:self action:@selector(touchUsingFaceIDButton) forControlEvents:UIControlEventTouchUpInside];
         [faceIdButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         _faceIdButton = faceIdButton;
     }
@@ -253,5 +292,42 @@
         _greenCircleView = rectView2;
     }
     return _greenCircleView;
+}
+
+- (UIView<PlayerAction> *)playerView {
+    BeginLazyPropInit(playerView)
+    playerView = [[OHPlayerView alloc] initWithPlayer:self.player];
+    playerView.frame = self.view.frame;
+    EndLazyPropInit(playerView)
+}
+
+- (AVPlayer *)player {
+    BeginLazyPropInit(player)
+    NSURL *url = [NSURL URLWithString:@"https://test.ourfor.top/mock/api/subscription.mp4"];
+    player = [[AVPlayer alloc] initWithURL:url];
+    EndLazyPropInit(player)
+}
+
+- (UIButton *)playButton {
+    BeginLazyPropInit(playButton)
+    playButton = [[UIButton alloc] init];
+    [playButton setTitle:@"播放" forState:UIControlStateNormal];
+    playButton.layer.cornerRadius = 10;
+    playButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
+    playButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    [playButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+    playButton.backgroundColor = UIColor.blackColor;
+    EndLazyPropInit(playButton)
+}
+
+- (UIButton *)openDetailButton {
+    BeginLazyPropInit(openDetailButton)
+    openDetailButton = [[UIButton alloc] init];
+    openDetailButton.titleLabel.font = [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:18];
+    openDetailButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+    [openDetailButton setTitle:@"转场" forState:UIControlStateNormal];
+    openDetailButton.layer.cornerRadius = 10;
+    openDetailButton.backgroundColor = UIColor.grayColor;
+    EndLazyPropInit(openDetailButton)
 }
 @end

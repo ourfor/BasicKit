@@ -6,19 +6,10 @@
 //  Copyright (c) 2021 曾谞旺. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-__attribute__((constructor)) static void beforeFn() {
-    
-}
-
-__attribute__((destructor)) static void afterFn() {
-    
-}
-
-int main(int argc, char * argv[])
-{
+int main(int argc, char * argv[]) {
     @autoreleasepool {
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
