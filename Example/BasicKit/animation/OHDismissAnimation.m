@@ -27,7 +27,7 @@
     [containerView sendSubviewToBack:toVC.view];
     
     NSTimeInterval duration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:1 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.9 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveEaseIn animations:^{
         fromVC.view.frame = finalFrame;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];

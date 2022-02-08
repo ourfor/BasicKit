@@ -329,7 +329,7 @@
 
 - (AVPlayer *)player {
     BeginLazyPropInit(player)
-    NSURL *url = [NSURL URLWithString:@"https://vod-progressive.akamaized.net/exp=1643548445~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2670%2F7%2F188350983%2F623685558.mp4~hmac=0f4be03a70e2caa0408a1f894dbcee61c41c9bb9b94b651de3318f6775387532/vimeo-prod-skyfire-std-us/01/2670/7/188350983/623685558.mp4?filename=Emoji+Saver+-+Patterns+in+the+Rain.mp4"];
+    NSURL *url = [NSURL URLWithString:@"https://test.ourfor.top/mock/api/subscription.mp4"];
     player = [[AVPlayer alloc] initWithURL:url];
     EndLazyPropInit(player)
 }

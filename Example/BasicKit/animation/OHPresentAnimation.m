@@ -25,7 +25,7 @@
     [containerView addSubview:toVC.view];
     
     NSTimeInterval duration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.3 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:duration delay:0.0 usingSpringWithDamping:0.9 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
         toVC.view.frame = finalFrame;
     } completion:^(BOOL finished) {
         [transitionContext completeTransition:YES];
