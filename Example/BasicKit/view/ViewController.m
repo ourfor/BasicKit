@@ -17,12 +17,13 @@
 #import "OHPlayerView.h"
 #import "OHDetailViewController.h"
 #import "OHNetworkProxy.h"
+#import <CoreMotion/CoreMotion.h>
 
 #define BUTTON_CORNER_RADIUS 10
 #define BUTTON_FONT [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:15]
 #define BUTTON_PADDING UIEdgeInsetsMake(8, 13, 8, 13)
 
-@interface ViewController ()
+@interface ViewController () <UICollisionBehaviorDelegate>
 @property (nonatomic, weak) Timer timer;
 @property (nonatomic, strong) UITextField *textInputView;
 @property (nonatomic, strong) UIView *redCircleView;
@@ -36,6 +37,11 @@
 @property (nonatomic, strong) OHTextStickerModel *model;
 @property (nonatomic, strong) UIView<PlayerAction> *playerView;
 @property (nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) UIDynamicAnimator *animator;
+@property (nonatomic, strong) CMMotionManager *motionManager;
+@property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
+@property (nonatomic, strong) UICollisionBehavior *collisionBehavior;
+@property (nonatomic, strong) UIPushBehavior *pushBehavior;
 @end
 
 @implementation ViewController
@@ -68,6 +74,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    if ([self.motionManager isAccelerometerActive]) {
+        [self.motionManager stopAccelerometerUpdates];
+    }
 }
 
 - (void)_setupUI {
@@ -162,6 +174,66 @@
     [self.popPanelButton addTarget:self action:@selector(showPopPanel) forControlEvents:UIControlEventTouchUpInside];
     [self.openDetailButton addTarget:self action:@selector(_openDetail) forControlEvents:UIControlEventTouchUpInside];
     [self.proxySwitch addTarget:self action:@selector(_switchProxy:) forControlEvents:UIControlEventValueChanged];
+    
+    self.animator = [self.animator initWithReferenceView:self.view];
+    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc] init];
+    [collisionBehavior addItem:self.redCircleView];
+    [collisionBehavior addItem:self.greenCircleView];
+//    [collisionBehavior addBoundaryWithIdentifier:@"barrier" forPath:[UIBezierPath bezierPathWithRect:self.view.bounds]];
+    collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+    collisionBehavior.collisionDelegate = self;
+    UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] init];
+    gravityBehavior.magnitude *= 2;
+    [gravityBehavior addItem:self.redCircleView];
+    [gravityBehavior addItem:self.greenCircleView];
+    UIPushBehavior *pushBehavior = [[UIPushBehavior alloc] init];
+    pushBehavior.angle = 2 * M_PI - gravityBehavior.angle;
+    pushBehavior.magnitude = gravityBehavior.magnitude;
+    self.gravityBehavior = gravityBehavior;
+    self.collisionBehavior = collisionBehavior;
+    self.pushBehavior = pushBehavior;
+    UIDynamicItemBehavior *positiveChargeBehavior = [[UIDynamicItemBehavior alloc] init];
+    positiveChargeBehavior.charge = 20;
+    positiveChargeBehavior.elasticity = 1.0f;
+    [positiveChargeBehavior addItem:self.redCircleView];
+    UIDynamicItemBehavior *negativeChargeBehavior = [[UIDynamicItemBehavior alloc] init];
+    negativeChargeBehavior.charge = -20;
+    negativeChargeBehavior.elasticity = 2.0f;
+    [negativeChargeBehavior addItem:self.greenCircleView];
+    [self.animator addBehavior:positiveChargeBehavior];
+    [self.animator addBehavior:negativeChargeBehavior];
+    [self.animator addBehavior:gravityBehavior];
+    [self.animator addBehavior:collisionBehavior];
+    [self.animator addBehavior:pushBehavior];
+    [self _useAccelerometer];
+    
+}
+
+#pragma mark Motion Detector
+- (void)_useAccelerometer {
+    CMMotionManager *manager = self.motionManager;
+    if (manager.isAccelerometerAvailable) {
+        manager.accelerometerUpdateInterval = 0.1f;
+        @weakify(self);
+        [manager startAccelerometerUpdatesToQueue:NSOperationQueue.mainQueue withHandler:^(CMAccelerometerData * _Nullable accelerometerData, NSError * _Nullable error) {
+            @strongify(self);
+            CMAcceleration acceleration = accelerometerData.acceleration;
+            const double x = acceleration.x;
+            const double y = acceleration.y;
+            const double z = acceleration.z;
+            self.gravityBehavior.gravityDirection = CGVectorMake(x, -y);
+            self.pushBehavior.angle = 2 * M_PI - self.gravityBehavior.angle;
+            self.pushBehavior.magnitude = self.gravityBehavior.magnitude;
+        }];
+    }
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)hideKeyboard {
@@ -234,6 +306,11 @@
     [self.navigationController presentViewController:detailViewController animated:YES completion:nil];
 }
 
+#pragma mark Dynamic Behavior Delegate
+- (void)collisionBehavior:(UICollisionBehavior *)behavior beganContactForItem:(id<UIDynamicItem>)item withBoundaryIdentifier:(id<NSCopying>)identifier atPoint:(CGPoint)p {
+//    [self.gravityBehavior removeItem:item];
+}
+
 #pragma mark Getter
 
 - (UIView *)stickerView {
@@ -303,9 +380,14 @@
 
 - (UIView *)redCircleView {
     if (!_redCircleView) {
-        UIView *rectView = [[UIView alloc] init];
+        UIImageView *rectView = [[UIImageView alloc] init];
         rectView.backgroundColor = UIColor.redColor;
+        rectView.frame = CGRectMake(0, 0, 100, 100);
+        CGSize size = UIScreen.mainScreen.bounds.size;
+        rectView.center = CGPointMake(size.width / 2, size.height / 2);
         rectView.layer.cornerRadius = 50;
+        UIImage *image = [UIImage imageNamed:@"fruit_2"];
+        rectView.image = image;
         _redCircleView = rectView;
     }
     return _redCircleView;
@@ -313,10 +395,15 @@
 
 - (UIView *)greenCircleView {
     if (!_greenCircleView) {
-        UIView *rectView2 = [[UIView alloc] init];
-        rectView2.backgroundColor = UIColor.greenColor;
-        rectView2.layer.cornerRadius = 50;
-        _greenCircleView = rectView2;
+        UIImageView *rectView = [[UIImageView alloc] init];
+        rectView.backgroundColor = UIColor.greenColor;
+        rectView.frame = CGRectMake(0, 0, 100, 100);
+        CGSize size = UIScreen.mainScreen.bounds.size;
+        rectView.center = CGPointMake(size.width / 2, size.height / 2);
+        rectView.layer.cornerRadius = 50;
+        UIImage *image = [UIImage imageNamed:@"fruit_3"];
+        rectView.image = image;
+        _greenCircleView = rectView;
     }
     return _greenCircleView;
 }
@@ -361,5 +448,17 @@
     BeginLazyPropInit(proxySwitch)
     proxySwitch = [[UISwitch alloc] init];
     EndLazyPropInit(proxySwitch)
+}
+
+- (UIDynamicAnimator *)animator {
+    BeginLazyPropInit(animator)
+    animator = [UIDynamicAnimator alloc];
+    EndLazyPropInit(animator)
+}
+
+- (CMMotionManager *)motionManager {
+    BeginLazyPropInit(motionManager)
+    motionManager = [[CMMotionManager alloc] init];
+    EndLazyPropInit(motionManager)
 }
 @end

@@ -8,14 +8,21 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "NSObject+Class.h"
 
 @implementation AppDelegate
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     _window = [[UIWindow alloc] init];
     UIViewController *viewController = [[ViewController alloc] init];
     viewController.view.backgroundColor = UIColor.whiteColor;
     UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:viewController];
+    IMP imp = [self methodForSelector:@selector(shouldAutorotate)];
+    [navigation setMethod:@selector(shouldAutorotate) implement:imp];
     navigation.navigationBarHidden = YES;
     _window.rootViewController = navigation;
     [_window makeKeyAndVisible];
