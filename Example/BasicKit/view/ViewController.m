@@ -18,6 +18,7 @@
 #import "OHDetailViewController.h"
 #import "OHNetworkProxy.h"
 #import <CoreMotion/CoreMotion.h>
+#import "OHWatchView.h"
 
 #define BUTTON_CORNER_RADIUS 10
 #define BUTTON_FONT [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:15]
@@ -35,6 +36,7 @@
 @property (nonatomic, strong) UISwitch *proxySwitch;
 @property (nonatomic, strong) UIView *stickerView;
 @property (nonatomic, strong) OHTextStickerModel *model;
+@property (nonatomic, strong) OHWatchView *watchView;
 @property (nonatomic, strong) UIView<PlayerAction> *playerView;
 @property (nonatomic, strong) AVPlayer *player;
 @property (nonatomic, strong) UIDynamicAnimator *animator;
@@ -93,6 +95,7 @@
     [superview addSubview:self.playButton];
     [superview addSubview:self.openDetailButton];
     [superview addSubview:self.proxySwitch];
+    [superview addSubview:self.watchView];
 
     RACChannelTo(self.model, text) = self.textInputView.rac_newTextChannel;
     UIGestureRecognizer *clickRecognizer = [[UITapGestureRecognizer alloc] init];
@@ -119,6 +122,14 @@
         make.height.equalTo(@100);
         make.centerY.equalTo(superview).offset(-60);
         make.centerX.equalTo(superview).offset(-20);
+    }];
+    
+    [self.watchView remakeConstraints:^(MASConstraintMaker *make) {
+        @strongify(superview);
+        make.width.equalTo(@200);
+        make.height.equalTo(@200);
+        make.centerY.equalTo(superview).offset(-90);
+        make.centerX.equalTo(superview);
     }];
     
     [self.stickerView makeConstraints:^(MASConstraintMaker *make) {
@@ -454,6 +465,12 @@
     BeginLazyPropInit(animator)
     animator = [UIDynamicAnimator alloc];
     EndLazyPropInit(animator)
+}
+
+- (OHWatchView *)watchView {
+    BeginLazyPropInit(watchView)
+    watchView = [[OHWatchView alloc] init];
+    EndLazyPropInit(watchView)
 }
 
 - (CMMotionManager *)motionManager {

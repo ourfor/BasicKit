@@ -23,6 +23,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		88564E17275F078800BB2F98 /* OHTextStickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88564E16275F078800BB2F98 /* OHTextStickerView.m */; };
+		885CB0E827B80EF600B41E5F /* OHWatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 885CB0E727B80EF600B41E5F /* OHWatchView.m */; };
 		88DC0AFF27B2A2CD0059751C /* OHNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DC0AFE27B2A2CD0059751C /* OHNavigationController.m */; };
 		88DC0B0227B2A5170059751C /* NSObject+Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DC0B0127B2A5170059751C /* NSObject+Class.m */; };
 		88F44F8527A403100034EDB9 /* OHPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F44F8427A403100034EDB9 /* OHPlayerView.m */; };
@@ -75,6 +76,8 @@
 		7A3D6E9E7FF9835B045ADB11 /* Pods-BasicKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicKitTests.debug.xcconfig"; path = "Target Support Files/Pods-BasicKitTests/Pods-BasicKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		88564E15275F078800BB2F98 /* OHTextStickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHTextStickerView.h; sourceTree = "<group>"; };
 		88564E16275F078800BB2F98 /* OHTextStickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHTextStickerView.m; sourceTree = "<group>"; };
+		885CB0E627B80EF600B41E5F /* OHWatchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHWatchView.h; sourceTree = "<group>"; };
+		885CB0E727B80EF600B41E5F /* OHWatchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHWatchView.m; sourceTree = "<group>"; };
 		88DC0AFD27B2A2CD0059751C /* OHNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OHNavigationController.h; sourceTree = "<group>"; };
 		88DC0AFE27B2A2CD0059751C /* OHNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OHNavigationController.m; sourceTree = "<group>"; };
 		88DC0B0027B2A5170059751C /* NSObject+Class.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Class.h"; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 				88F44FB927A5508F0034EDB9 /* OHRandomAlbumView.m */,
 				88DC0AFD27B2A2CD0059751C /* OHNavigationController.h */,
 				88DC0AFE27B2A2CD0059751C /* OHNavigationController.m */,
+				885CB0E627B80EF600B41E5F /* OHWatchView.h */,
+				885CB0E727B80EF600B41E5F /* OHWatchView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 			files = (
 				88DC0B0227B2A5170059751C /* NSObject+Class.m in Sources */,
 				88F44FBA27A5508F0034EDB9 /* OHRandomAlbumView.m in Sources */,
+				885CB0E827B80EF600B41E5F /* OHWatchView.m in Sources */,
 				88F44FB427A543E50034EDB9 /* OHPresentAnimation.m in Sources */,
 				88F44FC827A65EA90034EDB9 /* OHNetworkProxy.m in Sources */,
 				88F44FC027A64FCF0034EDB9 /* OHDismissAnimation.m in Sources */,
