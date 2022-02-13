@@ -126,9 +126,9 @@
     
     [self.watchView remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(superview);
-        make.width.equalTo(@200);
-        make.height.equalTo(@200);
-        make.centerY.equalTo(superview).offset(-90);
+        make.width.equalTo(@240);
+        make.height.equalTo(@240);
+        make.centerY.equalTo(superview).offset(-100);
         make.centerX.equalTo(superview);
     }];
     

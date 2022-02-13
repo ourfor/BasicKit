@@ -14,7 +14,6 @@
 @property (nonatomic, strong) UIView *hourPointerView;
 @property (nonatomic, strong) UIView *dialView;
 @property (nonatomic, strong) UIView *centerDotView;
-@property (nonatomic, weak) NSTimer *timer;
 @end
 
 @implementation OHWatchView
@@ -30,8 +29,6 @@
 }
 
 - (void)_setupUI {
-    self.layer.cornerRadius = 100;
-    self.dialView.layer.cornerRadius = 99;
     self.backgroundColor = UIColor.blackColor;
     [self addSubview:self.dialView];
     [self addSubview:self.hourPointerView];
@@ -78,16 +75,20 @@
     }];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.layer.cornerRadius = self.frame.size.width / 2;
+    self.dialView.layer.cornerRadius = self.dialView.frame.size.width / 2;
+}
+
 - (void)_bind {
-    @weakify(self);
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5f repeats:NO block:^(NSTimer * _Nonnull timer) {
-        @strongify(self);
-        NSDate *date = [NSDate date];
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    [NSTimer scheduledTimerWithTimeInterval:0.5f repeats:NO block:^(NSTimer * _Nonnull timer) {
+        NSDate *date = [[NSDate date] dateByAddingTimeInterval:1.0f];
+        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         NSDateComponents *dateComponent = [calendar components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
         CGFloat hourAngle = (2 * M_PI * dateComponent.hour / 12) - M_PI;
         CGFloat minuteAngle = (2 * M_PI * dateComponent.minute / 60) - M_PI;
-        CGFloat secondAngle = (2 * M_PI * (dateComponent.second + 1) / 60) - M_PI;
+        CGFloat secondAngle = (2 * M_PI * dateComponent.second / 60) - M_PI;
         [UIView animateWithDuration:1.0f animations:^{
             self.secondPointerView.transform = CGAffineTransformMakeRotation(secondAngle);
             self.minutePointerView.transform = CGAffineTransformMakeRotation(minuteAngle);
@@ -100,18 +101,15 @@
     }];
 }
 
-- (void)dealloc {
-    [self.timer invalidate];
-}
-
 - (CABasicAnimation *)_rotateWithDuration:(CGFloat)duration startAngle:(CGFloat)startAngle {
-    CABasicAnimation *rotateAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotateAnimation.duration = duration;
-    rotateAnimation.repeatCount = HUGE_VALF;
-    rotateAnimation.fromValue = @(startAngle);
-    rotateAnimation.toValue = @(startAngle + 2 * M_PI);
-    rotateAnimation.removedOnCompletion = NO;
-    return rotateAnimation;
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    animation.duration = duration;
+    animation.repeatCount = HUGE_VALF;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    animation.fromValue = @(startAngle);
+    animation.toValue = @(startAngle + 2 * M_PI);
+    animation.removedOnCompletion = NO;
+    return animation;
 }
 
 #pragma mark Getter
