@@ -87,8 +87,8 @@
         NSDateComponents *dateComponent = [calendar components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
         CGFloat hourAngle = (2 * M_PI * dateComponent.hour / 12) - M_PI;
         CGFloat minuteAngle = (2 * M_PI * dateComponent.minute / 60) - M_PI;
-        CGFloat secondAngle = (2 * M_PI * dateComponent.second / 60) - M_PI;
-        [UIView animateWithDuration:0.8f animations:^{
+        CGFloat secondAngle = (2 * M_PI * (dateComponent.second + 1) / 60) - M_PI;
+        [UIView animateWithDuration:1.0f animations:^{
             self.secondPointerView.transform = CGAffineTransformMakeRotation(secondAngle);
             self.minutePointerView.transform = CGAffineTransformMakeRotation(minuteAngle);
             self.hourPointerView.transform = CGAffineTransformMakeRotation(hourAngle);
@@ -110,6 +110,7 @@
     rotateAnimation.repeatCount = HUGE_VALF;
     rotateAnimation.fromValue = @(startAngle);
     rotateAnimation.toValue = @(startAngle + 2 * M_PI);
+    rotateAnimation.removedOnCompletion = NO;
     return rotateAnimation;
 }
 
