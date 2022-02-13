@@ -86,9 +86,11 @@
         NSDate *date = [[NSDate date] dateByAddingTimeInterval:1.0f];
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         NSDateComponents *dateComponent = [calendar components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:date];
-        CGFloat hourAngle = (2 * M_PI * dateComponent.hour / 12) - M_PI;
-        CGFloat minuteAngle = (2 * M_PI * dateComponent.minute / 60) - M_PI;
         CGFloat secondAngle = (2 * M_PI * dateComponent.second / 60) - M_PI;
+        CGFloat minuteAngleOffset = (dateComponent.second / 60) * 2 * M_PI / 60;
+        CGFloat minuteAngle = (2 * M_PI * dateComponent.minute / 60) + minuteAngleOffset - M_PI;
+        CGFloat hourAngleOffset = (dateComponent.minute / 60) * 2 * M_PI / 12;
+        CGFloat hourAngle = (2 * M_PI * dateComponent.hour / 12) + hourAngleOffset - M_PI;
         [UIView animateWithDuration:1.0f animations:^{
             self.secondPointerView.transform = CGAffineTransformMakeRotation(secondAngle);
             self.minutePointerView.transform = CGAffineTransformMakeRotation(minuteAngle);
