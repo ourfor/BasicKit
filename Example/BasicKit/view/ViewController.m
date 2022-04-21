@@ -19,6 +19,8 @@
 #import "OHNetworkProxy.h"
 #import <CoreMotion/CoreMotion.h>
 #import "OHWatchView.h"
+#import "OHTitleAndIconView.h"
+#import "NSException+CrashCollector.h"
 
 #define BUTTON_CORNER_RADIUS 10
 #define BUTTON_FONT [UIFont fontWithName:ASSET_FONT_ARITAHEITI_MEDIUM size:15]
@@ -44,6 +46,7 @@
 @property (nonatomic, strong) UIGravityBehavior *gravityBehavior;
 @property (nonatomic, strong) UICollisionBehavior *collisionBehavior;
 @property (nonatomic, strong) UIPushBehavior *pushBehavior;
+@property (nonatomic, strong) UIAttachmentBehavior *attachmentBehavior;
 @end
 
 @implementation ViewController
@@ -54,6 +57,7 @@
     [self _setupUI];
     [self _layout];
     [self _bind];
+    [self _test];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -96,6 +100,9 @@
     [superview addSubview:self.openDetailButton];
     [superview addSubview:self.proxySwitch];
     [superview addSubview:self.watchView];
+    
+    UIView *testView = [OHTitleAndIconView new];
+    [superview addSubview:testView];
 
     RACChannelTo(self.model, text) = self.textInputView.rac_newTextChannel;
     UIGestureRecognizer *clickRecognizer = [[UITapGestureRecognizer alloc] init];
@@ -174,8 +181,11 @@
     
     [self.proxySwitch remakeConstraints:^(MASConstraintMaker *make) {
         @strongify(superview);
-        make.centerX.equalTo(superview);
+//        make.centerX.equalTo(superview);
+        make.height.equalTo(@31);
+        make.width.equalTo(@51);
         make.top.equalTo(self.openDetailButton.bottom).offset(20);
+        make.left.equalTo(self.view).with.offset(-(51 - 31) / 2);
     }];
 }
 
@@ -195,7 +205,7 @@
     collisionBehavior.collisionDelegate = self;
     UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc] init];
     gravityBehavior.magnitude *= 2;
-    [gravityBehavior addItem:self.redCircleView];
+//    [gravityBehavior addItem:self.redCircleView];
     [gravityBehavior addItem:self.greenCircleView];
     UIPushBehavior *pushBehavior = [[UIPushBehavior alloc] init];
     pushBehavior.angle = 2 * M_PI - gravityBehavior.angle;
@@ -211,13 +221,37 @@
     negativeChargeBehavior.charge = -20;
     negativeChargeBehavior.elasticity = 2.0f;
     [negativeChargeBehavior addItem:self.greenCircleView];
+    UIAttachmentBehavior *attachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:self.redCircleView attachedToAnchor:CGPointMake(0, 0)];
+    self.attachmentBehavior = attachmentBehavior;
     [self.animator addBehavior:positiveChargeBehavior];
     [self.animator addBehavior:negativeChargeBehavior];
     [self.animator addBehavior:gravityBehavior];
     [self.animator addBehavior:collisionBehavior];
     [self.animator addBehavior:pushBehavior];
+    [self.animator addBehavior:attachmentBehavior];
     [self _useAccelerometer];
     
+    NSArray<UIView *> *canMoveViews = @[
+        self.playButton,
+        self.openDetailButton,
+        self.watchView,
+        self.faceIdButton,
+        self.popPanelButton,
+        self.redCircleView,
+        self.greenCircleView
+    ];
+    
+    for (UIView *view in canMoveViews) {
+        UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_moveView:)];
+        [view addGestureRecognizer:panRecognizer];
+    }
+}
+
+- (void)_test {
+    NSArray *array = @[@1, @3, @4, @5];
+    for (int i = 0; i < 10; i++) {
+        NSLog(@"%@", array[i]);
+    }
 }
 
 #pragma mark Motion Detector
@@ -237,6 +271,18 @@
             self.pushBehavior.magnitude = self.gravityBehavior.magnitude;
         }];
     }
+}
+
+- (void)_moveView:(UIPanGestureRecognizer *)sender {
+    UIView *view = sender.view;
+    CGPoint point = [sender translationInView:view];
+    view.transform = CGAffineTransformTranslate(view.transform, point.x, point.y);
+    if (view == self.redCircleView) {
+        CGPoint offsetPoint = [sender translationInView:view];
+        CGPoint anchorPoint = CGPointApplyAffineTransform(view.center, view.transform);
+        self.attachmentBehavior.anchorPoint = anchorPoint;
+    }
+    [sender setTranslation:CGPointZero inView:view];
 }
 
 - (BOOL)shouldAutorotate {
@@ -399,6 +445,7 @@
         rectView.layer.cornerRadius = 50;
         UIImage *image = [UIImage imageNamed:@"fruit_2"];
         rectView.image = image;
+        rectView.userInteractionEnabled = YES;
         _redCircleView = rectView;
     }
     return _redCircleView;
@@ -414,6 +461,7 @@
         rectView.layer.cornerRadius = 50;
         UIImage *image = [UIImage imageNamed:@"fruit_3"];
         rectView.image = image;
+        rectView.userInteractionEnabled = YES;
         _greenCircleView = rectView;
     }
     return _greenCircleView;
@@ -458,6 +506,7 @@
 - (UISwitch *)proxySwitch {
     BeginLazyPropInit(proxySwitch)
     proxySwitch = [[UISwitch alloc] init];
+    proxySwitch.transform = CGAffineTransformRotate(proxySwitch.transform, M_PI_2);
     EndLazyPropInit(proxySwitch)
 }
 
